@@ -1,0 +1,18 @@
+--Year
+var resultado = 
+  CLOSINGBALANCEYEAR( //Retornar o fechamento do ano
+          CALCULATE( //Calculate dentro de outra calculate (Externo -> Interno
+              CALCULATE(
+                  SELECTEDMEASURE(),
+                  DATESYTD(dCalendario[Data]) 
+                  ),
+              REMOVEFILTERS(dCalendario),//Retira qualquer filtro da Calculate
+              TREATAS( //Se comportar como - Ele faz com que um filtro se comporte como outro
+                  CALCULATETABLE(
+                      values(dEixo_Simples[Data])//Primeiro argumento do TREATAS
+                      ,dEixo_Simples[ID_Visao]=0) 
+                  ,dCalendario[Data])//Coluna que deve se comportar como o primeiro argumento 
+                      ),
+          dCalendario[Data])//Coluna de datas para o ClosingBalance
+return
+  resultado
