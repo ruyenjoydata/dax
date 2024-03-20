@@ -1,0 +1,8 @@
+-- For field parameters, the SELECTEDVALUE function does not work correctly. Use the following syntax
+var selected_parameter_fields = 
+    IF(
+        COUNTROWS(Table_Parameter)=1,
+        MAX(Table_Parameter[Fields])
+    )
+return
+selected_parameter_fields
